@@ -1,0 +1,3 @@
+S:/Google Drive/Universitet - Personlig/8. Semester/Algorithms, Data Structures and Software Engineering for Media Technology/ADSSE Mini project/Code/cmake-build-debug/CMakeFiles/Code.dir
+S:/Google Drive/Universitet - Personlig/8. Semester/Algorithms, Data Structures and Software Engineering for Media Technology/ADSSE Mini project/Code/cmake-build-debug/CMakeFiles/edit_cache.dir
+S:/Google Drive/Universitet - Personlig/8. Semester/Algorithms, Data Structures and Software Engineering for Media Technology/ADSSE Mini project/Code/cmake-build-debug/CMakeFiles/rebuild_cache.dir
