@@ -18,43 +18,43 @@ void printArray(int array[], int arrSize, int newlineSize) {
 }
 
 // RANDOMIZED SELECT START //
-int Partition(int A[], int p, int r) {
-    int x = A[r];
-    int i = p - 1;
-    for(int j = p; j < r-1; j++) {
-        if (A[j] <= x) {
+int Partition(int PArray[], int Pstart, int Pend) {
+    int x = PArray[Pend];
+    int i = Pstart - 1;
+    for(int j = Pstart; j < Pend; j++) {
+        if (PArray[j] <= x) {
             i = i + 1;
-            int temp = A[i];
-            A[i] = A[j];
-            A[j] = temp;
+            int temp = PArray[i];
+            PArray[i] = PArray[j];
+            PArray[j] = temp;
         }
     }
-    int temp = A[i+1];
-    A[i+1] = A[r];
-    A[r] = temp;
-    return i + 1;
+    int temp = PArray[i+1];
+    PArray[i+1] = PArray[Pend];
+    PArray[Pend] = temp;
+    return i+1;
 }
 
-int RandomizedPartition(int A[], int p, int r) {
-    int i = rand()%(r-p + 1) + p;
-    int temp = A[r];
-    A[r] = A[i];
-    A[i] = temp;
-    return Partition(A, p, r);
+int RandomizedPartition(int RPArray[], int RPstart, int RPend) {
+    int i = rand()%(RPend-RPstart + 1) + RPstart;
+    int temp = RPArray[RPend];
+    RPArray[RPend] = RPArray[i];
+    RPArray[i] = temp;
+    return Partition(RPArray, RPstart, RPend);
 }
 
-int RandomizedSelect(int A[], int p, int r, int i) {
-    if (p == r) {
-        return A[p];
+int RandomizedSelect(int Array[], int start, int end, int target) {
+    if (start == end) {
+        return Array[start];
     }
-    int q = RandomizedPartition(A, p, r);
-    int k = q - p + 1;
-    if (i == k) {
-        return A[q];
-    } else if (i < k) {
-        return RandomizedSelect(A, p, q-1, i);
+    int pivot = RandomizedPartition(Array, start, end);
+    int k = pivot - start+1;
+    if (target == k) {
+        return Array[pivot];
+    } else if (target < k) {
+        return RandomizedSelect(Array, start, pivot-1, target);
     } else {
-        return RandomizedSelect(A, q+1, r, i-k);
+        return RandomizedSelect(Array, pivot+1, end, target-k);
     }
 }
 // RANDOMIZED SELECT END //
@@ -74,7 +74,7 @@ int main() {
 
     //printArray(dataArray, dataSize, 20);
 
-    cout << RandomizedSelect(testArray, 0, 11, 9);
+    cout << RandomizedSelect(testArray, 0, 9, 9);
 
     return 0;
 }
