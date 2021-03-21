@@ -59,6 +59,8 @@ int RandomizedSelect(int Array[], int start, int end, int target) {
 }
 // RANDOMIZED SELECT END //
 
+
+//Gnome sort is different from insertion sort, since it does not remember where it came from, insertion sort remembers where it came from, and jumps dirrectly to this point after swapping
 void GnomeSort (int arrayToSort[], int dataSize){
     int currentPos = 0;
     //int sizeOfArray = sizeof(arrayToSort)/sizeof(*arrayToSort);
