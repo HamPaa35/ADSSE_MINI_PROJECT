@@ -59,9 +59,25 @@ int RandomizedSelect(int Array[], int start, int end, int target) {
 }
 // RANDOMIZED SELECT END //
 
+void GnomeSort (int arrayToSort[], int dataSize){
+    int currentPos = 0;
+    //int sizeOfArray = sizeof(arrayToSort)/sizeof(*arrayToSort);
+    while (currentPos < dataSize)
+    {
+        if (currentPos == 0 || arrayToSort[currentPos] >= arrayToSort[currentPos-1]){
+            currentPos += 1;
+        }
+        else{
+            swap(arrayToSort[currentPos], arrayToSort[currentPos-1]);
+            currentPos -= 1;
+        }
+    }
+}
+
 int main() {
     const int dataSize = 1001;
     int dataArray[dataSize];
+    int dataArray2[dataSize];
     fstream dataSet("small.csv");
 
     if (dataSet.is_open()) {
@@ -69,12 +85,16 @@ int main() {
             string lineElement;
             getline(dataSet, lineElement, ',');
             dataArray[i] = stoi(lineElement);
+            dataArray2[i] = stoi(lineElement);
         }
     }
 
-    //printArray(dataArray, dataSize, 20);
+    int ithElement = 1000;
+    
+    cout << "Randomized select: " << RandomizedSelect(dataArray, 0, dataSize-1, ithElement);
 
-    cout << RandomizedSelect(testArray, 0, 9, 9);
+    GnomeSort(dataArray2, dataSize);
 
+    cout << "\n" << "Gnome sort: " << dataArray2[ithElement-1];
     return 0;
 }
