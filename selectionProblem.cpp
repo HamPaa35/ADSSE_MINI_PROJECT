@@ -2,10 +2,15 @@
 #include<fstream>
 #include<sstream>
 #include<string>
+#include<time.h>
+#include<chrono>
+#include<ctime>
 
 using namespace std;
+using namespace std::chrono;
 
-int testArray[10] = {2,11,4,3,5,6,8,7,10,9};
+int testArray[10] = {10,9,8,7,6,5,4,3,2,1};
+int testArray2[10] = {10,9,8,7,6,5,4,3,2,1};
 
 void printArray(int array[], int arrSize, int newlineSize) {
     for(int i = 0; i < arrSize; i++) {
@@ -77,6 +82,8 @@ void GnomeSort (int arrayToSort[], int dataSize){
 }
 
 int main() {
+    
+    steady_clock::time_point setup_start = steady_clock::now();
     const int dataSize = 1001;
     int dataArray[dataSize];
     int dataArray2[dataSize];
@@ -90,13 +97,38 @@ int main() {
             dataArray2[i] = stoi(lineElement);
         }
     }
+    steady_clock::time_point setup_stop = steady_clock::now();
 
-    int ithElement = 1000;
+    auto setup_duration = setup_stop - setup_start;
+
+    cout << duration <double, milli> (setup_duration).count()<< endl;
+
+    int ithElement = 1;
     
-    cout << "Randomized select: " << RandomizedSelect(dataArray, 0, dataSize-1, ithElement);
+    steady_clock::time_point rand_start = steady_clock::now();
+    cout << "Randomized select: " << RandomizedSelect(testArray2, 0, 9, ithElement) << endl;
+    steady_clock::time_point rand_stop = steady_clock::now();
 
-    GnomeSort(dataArray2, dataSize);
+    auto rand_duration = rand_stop - rand_start;
 
-    cout << "\n" << "Gnome sort: " << dataArray2[ithElement-1];
+    cout << duration <double, milli> (rand_duration).count();
+
+    steady_clock::time_point gnome_start = steady_clock::now();
+    GnomeSort(testArray2, 10);
+
+    cout << "\n" << "Gnome sort: " << testArray2[ithElement-1] << endl;
+    steady_clock::time_point gnome_stop = steady_clock::now();
+
+    auto gnome_duration = gnome_stop - gnome_start;
+
+    cout << duration <double, milli> (gnome_duration).count();
+
+    //int ithElement = 1000;
+    
+    //cout << "Randomized select: " << RandomizedSelect(dataArray, 0, dataSize-1, ithElement);
+
+    //GnomeSort(dataArray2, dataSize);
+
+    //cout << "\n" << "Gnome sort: " << dataArray2[ithElement-1];
     return 0;
 }
