@@ -82,7 +82,7 @@ void GnomeSort (int arrayToSort[], int dataSize){
 }
 
 int main() {
-    
+    //Setup and load of the file containing the dataset
     steady_clock::time_point setup_start = steady_clock::now();
     const int dataSize = 1001;
     int dataArray[dataSize];
@@ -97,38 +97,38 @@ int main() {
             dataArray2[i] = stoi(lineElement);
         }
     }
+    //End timing of the setup
     steady_clock::time_point setup_stop = steady_clock::now();
-
     auto setup_duration = setup_stop - setup_start;
-
     cout << duration <double, milli> (setup_duration).count()<< endl;
 
-    int ithElement = 1;
+    //What element to find in the selection problem
+    int ithElement = 2;
     
+    //Run random select
     steady_clock::time_point rand_start = steady_clock::now();
-    cout << "Randomized select: " << RandomizedSelect(testArray2, 0, 9, ithElement) << endl;
-    steady_clock::time_point rand_stop = steady_clock::now();
-
-    auto rand_duration = rand_stop - rand_start;
-
-    cout << duration <double, milli> (rand_duration).count();
-
-    steady_clock::time_point gnome_start = steady_clock::now();
-    GnomeSort(testArray2, 10);
-
-    cout << "\n" << "Gnome sort: " << testArray2[ithElement-1] << endl;
-    steady_clock::time_point gnome_stop = steady_clock::now();
-
-    auto gnome_duration = gnome_stop - gnome_start;
-
-    cout << duration <double, milli> (gnome_duration).count();
-
-    //int ithElement = 1000;
+    cout << "Randomized select: " << RandomizedSelect(dataArray, 0, 1000, ithElement) << endl;
     
+    //Time random select
+    steady_clock::time_point rand_stop = steady_clock::now();
+    auto rand_duration = rand_stop - rand_start;
+    cout << "rand dur "<< duration <double, milli> (rand_duration).count();
+
+    //Run Gnome sort
+    steady_clock::time_point gnome_start = steady_clock::now();
+    GnomeSort(dataArray2, 1001);
+
+    cout << "\n" << "Gnome sort: " << dataArray2[ithElement-1] << endl;
+    
+    //Time Gnome sort
+    steady_clock::time_point gnome_stop = steady_clock::now();
+    auto gnome_duration = gnome_stop - gnome_start;
+    cout << "Gnome dur " << duration <double, milli> (gnome_duration).count() << endl;
+
+    //cin.ignore();
+    //int ithElement = 1000;    
     //cout << "Randomized select: " << RandomizedSelect(dataArray, 0, dataSize-1, ithElement);
-
     //GnomeSort(dataArray2, dataSize);
-
     //cout << "\n" << "Gnome sort: " << dataArray2[ithElement-1];
     return 0;
 }
