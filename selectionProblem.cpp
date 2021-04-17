@@ -84,10 +84,10 @@ void GnomeSort (int arrayToSort[], int dataSize){
 int main() {
     //Setup and load of the file containing the dataset
     steady_clock::time_point setup_start = steady_clock::now();
-    const int dataSize = 1001;
+    const int dataSize = 10001;
     int dataArray[dataSize];
     int dataArray2[dataSize];
-    fstream dataSet("small.csv");
+    fstream dataSet("large.csv");
 
     if (dataSet.is_open()) {
         for(int i = 0; i < dataSize; i++) {
@@ -107,7 +107,7 @@ int main() {
     
     //Run random select
     steady_clock::time_point rand_start = steady_clock::now();
-    cout << "Randomized select: " << RandomizedSelect(dataArray, 0, 1000, ithElement) << endl;
+    cout << "Randomized select: " << RandomizedSelect(dataArray, 0, 10000, ithElement) << endl;
     
     //Time random select
     steady_clock::time_point rand_stop = steady_clock::now();
@@ -116,7 +116,7 @@ int main() {
 
     //Run Gnome sort
     steady_clock::time_point gnome_start = steady_clock::now();
-    GnomeSort(dataArray2, 1001);
+    GnomeSort(dataArray2, 10001);
 
     cout << "\n" << "Gnome sort: " << dataArray2[ithElement-1] << endl;
     
